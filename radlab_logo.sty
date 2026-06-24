@@ -1,0 +1,231 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{radlab_logo}[2026/06/11 RAD LAB TikZ logo]
+
+\RequirePackage{tikz}
+\RequirePackage{byu_colors}
+
+
+\tikzset{
+    outline/.style={radlab logo outline=#1},
+    background/.style={radlab logo background=#1},
+    text box/.style={radlab logo text box=#1},
+    logo text/.style={radlab logo text=#1},
+    text claws/.style={radlab logo text claws=#1},
+    base/.style={radlab logo base=#1},
+    torso/.style={radlab logo torso=#1},
+    upper arms/.style={radlab logo upper arms=#1},
+    forearms/.style={radlab logo forearms=#1},
+    hands/.style={radlab logo hands=#1},
+    face/.style={radlab logo face=#1},
+    eye/.style={radlab logo eye=#1},
+    helmet/.style={radlab logo helmet=#1},
+    joints/.style={radlab logo joints=#1},
+    radlab logo outline/.initial=radlabBlue,
+    radlab logo background/.initial=white,
+    radlab logo text box/.initial=radlabBlue,
+    radlab logo text/.initial=white,
+    radlab logo text claws/.initial=white,
+    radlab logo base/.initial=radlabBlue,
+    radlab logo torso/.initial=radlabBlue,
+    radlab logo upper arms/.initial=radlabBlue,
+    radlab logo forearms/.initial=radlabBlue,
+    radlab logo hands/.initial=radlabBlue,
+    radlab logo face/.initial=radlabBlue,
+    radlab logo eye/.initial=white,
+    radlab logo helmet/.initial=radlabBlue,
+    radlab logo joints/.initial=white,
+    pics/radlab_logo/.style = { code = {
+        \begin{scope}
+            \path[fill=\pgfkeysvalueof{/tikz/radlab logo background}]
+                (3.3345,6.57307)
+                .. controls (2.15113,6.57384) and (1.26876,5.88044) .. (0.82034,5.03154)
+                .. controls (0.37191,4.18264) and (0.42449,3.14374) .. (0.94938,2.20831)
+                -- (0.54771,2.20192)
+                .. controls (0.26547,2.19743) and (0.08032,2.01556) .. (0.08032,1.73453)
+                -- (0.08032,0.58341)
+                .. controls (0.08032,0.30238) and (0.26544,0.07613) .. (0.54771,0.07613)
+                -- (6.12129,0.07613)
+                .. controls (6.40356,0.07613) and (6.58868,0.30238) .. (6.58868,0.58341)
+                -- (6.58868,1.73453)
+                .. controls (6.58868,2.01556) and (6.40353,2.19743) .. (6.12129,2.20192)
+                -- (5.71962,2.20831)
+                .. controls (6.24451,3.14374) and (6.29709,4.18264) .. (5.84866,5.03154)
+                .. controls (5.40024,5.88044) and (4.51787,6.57384) .. (3.3345,6.57307)
+                -- cycle;
+            \path[fill=\pgfkeysvalueof{/tikz/radlab logo text box}]
+            (15.4034pt,57.4543pt) -- (174.2091pt,57.4543pt)
+                .. controls (178.4246pt,57.4543pt) and (181.8183pt,54.0606pt) .. (181.8183pt,49.8451pt) -- (181.8183pt,15.3049pt)
+                .. controls (181.8183pt,11.0894pt) and (178.4246pt,7.6957pt) .. (174.2091pt,7.6957pt) -- (15.4034pt,7.6957pt)
+                .. controls (11.1879pt,7.6957pt) and (7.7942pt,11.0894pt) .. (7.7942pt,15.3049pt) -- (7.7942pt,49.8451pt)
+                .. controls (7.7942pt,54.0606pt) and (11.1879pt,57.4543pt) .. (15.4034pt,57.4543pt) -- cycle;
+            \path[fill=\pgfkeysvalueof{/tikz/radlab logo text}]
+            (164.6843pt,33.8222pt) .. controls (164.5543pt,31.279pt) and (162.6685pt,30.2951pt) .. (157.877pt,30.494pt)
+                -- (157.877pt,36.7772pt) .. controls (159.4572pt,36.9107pt) and (164.8796pt,37.6451pt) .. (164.6843pt,33.8222pt) -- cycle
+                (157.877pt,26.2283pt) .. controls (163.2866pt,26.4374pt) and (165.3953pt,25.2272pt) .. (165.2015pt,22.1589pt)
+                .. controls (164.9292pt,17.8466pt) and (159.7593pt,18.6424pt) .. (157.877pt,18.6424pt) -- cycle
+                (151.8418pt,40.8065pt) .. controls (151.8418pt,33.5171pt) and (151.9004pt,18.9953pt) .. (151.9004pt,14.3748pt)
+                .. controls (157.9331pt,13.5636pt) and (168.1291pt,13.1686pt) .. (170.9606pt,18.8828pt)
+                .. controls (172.7456pt,22.4852pt) and (171.7227pt,27.4534pt) .. (166.3945pt,28.8358pt)
+                .. controls (174.9095pt,32.179pt) and (171.9005pt,45.4056pt) .. (151.8418pt,40.8065pt) -- cycle
+                (31.9374pt,33.2785pt) .. controls (32.0551pt,28.8567pt) and (25.9559pt,29.3611pt) .. (25.0742pt,29.3611pt)
+                .. controls (25.0742pt,31.1431pt) and (25.0781pt,36.6209pt) .. (25.0781pt,36.6209pt)
+                .. controls (27.1275pt,36.8517pt) and (31.8347pt,37.1347pt) .. (31.9374pt,33.2785pt) -- cycle
+                (18.8203pt,40.869pt) -- (18.9648pt,14.3748pt) -- (25.0273pt,14.3748pt)
+                .. controls (25.0273pt,17.7687pt) and (25.0127pt,21.4574pt) .. (25.0273pt,24.7362pt)
+                .. controls (32.3585pt,25.3328pt) and (30.4854pt,18.9521pt) .. (32.8281pt,14.3748pt)
+                .. controls (34.9203pt,14.424pt) and (37.0128pt,14.3852pt) .. (39.1055pt,14.3748pt)
+                .. controls (38.0719pt,18.3792pt) and (36.8867pt,26.0132pt) .. (33.4004pt,26.9393pt)
+                .. controls (39.9926pt,28.435pt) and (43.4046pt,45.8124pt) .. (18.8203pt,40.869pt) -- cycle
+                (84.0179pt,27.6394pt) .. controls (83.1882pt,17.933pt) and (75.9259pt,18.8784pt) .. (73.0391pt,18.8784pt)
+                -- (73.0391pt,36.4004pt) .. controls (77.3403pt,37.3126pt) and (84.7298pt,35.9667pt) .. (84.0179pt,27.6394pt) -- cycle
+                (66.8848pt,40.8065pt) -- (66.8848pt,14.3748pt)
+                .. controls (69.2944pt,14.0244pt) and (82.7485pt,12.4245pt) .. (88.0254pt,19.4725pt)
+                .. controls (91.4135pt,23.9978pt) and (91.7066pt,32.0317pt) .. (88.1445pt,36.5389pt)
+                .. controls (82.8773pt,42.7332pt) and (74.1012pt,41.4017pt) .. (66.8848pt,40.8065pt) -- cycle
+                (107.4707pt,41.1619pt) -- (107.4707pt,14.3748pt) -- (124.1543pt,14.3748pt) -- (124.1543pt,19.4725pt)
+                -- (113.623pt,19.4725pt) .. controls (113.623pt,26.7162pt) and (113.6043pt,37.5401pt) .. (113.6195pt,41.1619pt)
+                .. controls (113.6195pt,41.1619pt) and (109.4768pt,41.1783pt) .. (107.4707pt,41.1619pt) -- cycle
+                (43.2207pt,23.6209pt) -- (40.4785pt,14.3748pt)
+                .. controls (42.5459pt,14.3748pt) and (46.2241pt,14.3656pt) .. (46.8105pt,14.3748pt)
+                .. controls (47.3382pt,16.3015pt) and (47.4328pt,18.4696pt) .. (49.5566pt,19.1443pt)
+                .. controls (50.9709pt,19.3009pt) and (54.3402pt,19.3041pt) .. (55.7832pt,19.1443pt)
+                .. controls (57.912pt,18.6076pt) and (58.03pt,16.1914pt) .. (58.5293pt,14.3748pt)
+                .. controls (59.1157pt,14.3656pt) and (62.792pt,14.3748pt) .. (64.8594pt,14.3748pt) -- (62.1191pt,23.6209pt) -- cycle
+                (128.6348pt,23.6209pt) -- (125.8926pt,14.3748pt)
+                .. controls (127.96pt,14.3748pt) and (131.6382pt,14.3656pt) .. (132.2246pt,14.3748pt)
+                .. controls (132.7524pt,16.3001pt) and (132.8462pt,18.4697pt) .. (134.9687pt,19.1443pt)
+                .. controls (136.3828pt,19.3009pt) and (139.7541pt,19.3042pt) .. (141.1973pt,19.1443pt)
+                .. controls (143.3245pt,18.6073pt) and (143.4424pt,16.1904pt) .. (143.9414pt,14.3748pt)
+                .. controls (144.5278pt,14.3656pt) and (148.206pt,14.3748pt) .. (150.2734pt,14.3748pt) -- (147.5312pt,23.6209pt) -- cycle;
+            \path[fill=\pgfkeysvalueof{/tikz/radlab logo text claws}]
+            (95.3779pt,50.6346pt) .. controls (96.4287pt,50.6346pt) and (97.6397pt,49.7688pt) .. (97.6387pt,48.369pt)
+                .. controls (97.6375pt,46.9691pt) and (96.4932pt,46.1268pt) .. (95.3769pt,46.1268pt)
+                .. controls (94.2607pt,46.1268pt) and (93.1164pt,46.9691pt) .. (93.1152pt,48.369pt)
+                .. controls (93.1141pt,49.7688pt) and (94.3272pt,50.6346pt) .. (95.3779pt,50.6346pt) -- cycle
+                (90.2422pt,50.3104pt) -- (52.6699pt,50.3104pt)
+                .. controls (51.4997pt,50.3104pt) and (50.7406pt,49.2401pt) .. (50.7324pt,48.369pt) -- (50.7324pt,42.4293pt)
+                .. controls (50.2982pt,42.392pt) and (48.6487pt,42.1161pt) .. (48.1953pt,41.3787pt)
+                .. controls (47.7617pt,40.6736pt) and (44.3563pt,30.311pt) .. (44.4297pt,29.1912pt)
+                .. controls (44.4731pt,28.5285pt) and (47.3406pt,25.0329pt) .. (49.1035pt,24.5682pt)
+                .. controls (49.1035pt,27.4383pt) and (49.0766pt,29.8793pt) .. (49.1035pt,32.283pt)
+                .. controls (49.1304pt,34.6868pt) and (50.9512pt,36.0863pt) .. (52.6699pt,36.0916pt)
+                .. controls (54.3887pt,36.0863pt) and (56.2094pt,34.6868pt) .. (56.2363pt,32.283pt)
+                .. controls (56.2632pt,29.8793pt) and (56.2363pt,27.4383pt) .. (56.2363pt,24.5682pt)
+                .. controls (57.9992pt,25.0329pt) and (60.8667pt,28.5285pt) .. (60.9102pt,29.1912pt)
+                .. controls (60.9836pt,30.311pt) and (57.5836pt,40.6733pt) .. (57.15pt,41.3784pt)
+                .. controls (56.6913pt,42.1244pt) and (55.0272pt,42.395pt) .. (54.6074pt,42.4293pt) -- (54.6074pt,45.9237pt)
+                .. controls (54.6074pt,46.1634pt) and (54.7971pt,46.4247pt) .. (55.0859pt,46.4295pt)
+                .. controls (55.3747pt,46.4343pt) and (78.6977pt,46.4224pt) .. (90.2422pt,46.4295pt)
+                .. controls (90.2422pt,46.2632pt) and (91.5967pt,42.8709pt) .. (95.3769pt,42.8709pt)
+                .. controls (99.1572pt,42.8709pt) and (100.5137pt,46.2632pt) .. (100.5137pt,46.4295pt)
+                .. controls (112.0582pt,46.4224pt) and (135.3791pt,46.4343pt) .. (135.668pt,46.4295pt)
+                .. controls (135.9568pt,46.4247pt) and (136.1484pt,46.1634pt) .. (136.1484pt,45.9237pt) -- (136.1484pt,42.4291pt)
+                .. controls (135.7296pt,42.3962pt) and (134.0688pt,42.1265pt) .. (133.609pt,41.3787pt)
+                .. controls (133.1754pt,40.6736pt) and (129.7684pt,30.311pt) .. (129.8418pt,29.1912pt)
+                .. controls (129.8852pt,28.5285pt) and (132.7527pt,25.0329pt) .. (134.5156pt,24.5682pt)
+                .. controls (134.5156pt,27.4383pt) and (134.4887pt,29.8793pt) .. (134.5156pt,32.283pt)
+                .. controls (134.5425pt,34.6868pt) and (136.3633pt,36.0863pt) .. (138.082pt,36.0916pt)
+                .. controls (139.8008pt,36.0863pt) and (141.6235pt,34.6868pt) .. (141.6504pt,32.283pt)
+                .. controls (141.6773pt,29.8793pt) and (141.6504pt,27.4383pt) .. (141.6504pt,24.5682pt)
+                .. controls (143.4133pt,25.0329pt) and (146.2808pt,28.5285pt) .. (146.3242pt,29.1912pt)
+                .. controls (146.3976pt,30.311pt) and (142.9956pt,40.6736pt) .. (142.562pt,41.3787pt)
+                .. controls (142.1091pt,42.1153pt) and (140.4572pt,42.3916pt) .. (140.023pt,42.4291pt)
+                .. controls (139.9893pt,42.4138pt) and (140.0235pt,48.369pt) .. (140.0235pt,48.369pt)
+                .. controls (140.0153pt,49.2402pt) and (139.2562pt,50.3104pt) .. (138.086pt,50.3104pt) -- (100.5137pt,50.3104pt)
+                .. controls (100.5137pt,50.6358pt) and (98.9998pt,53.869pt) .. (95.3779pt,53.869pt)
+                .. controls (91.756pt,53.869pt) and (90.2422pt,50.6358pt) .. (90.2422pt,50.3104pt) -- cycle;
+            \path[fill=\pgfkeysvalueof{/tikz/radlab logo base}]
+            (80.4073pt,97.3691pt) .. controls (73.1863pt,92.815pt) and (61.5521pt,75.2772pt) .. (65.5053pt,67.3562pt)
+                .. controls (72.0453pt,60.2107pt) and (99.8058pt,68.1113pt) .. (100.6077pt,73.401pt)
+                .. controls (100.8773pt,75.1791pt) and (98.369pt,89.5829pt) .. (90.4821pt,98.2764pt)
+                .. controls (84.2276pt,95.8889pt) and (81.9248pt,96.9013pt) .. (80.4073pt,97.3691pt) -- cycle;
+            \path[fill=\pgfkeysvalueof{/tikz/radlab logo torso}]
+            (92.6021pt,132.109pt) .. controls (92.0531pt,132.3772pt) and (89.6086pt,136.1906pt) .. (87.4739pt,137.0099pt)
+                .. controls (85.5364pt,137.7535pt) and (80.6829pt,136.7288pt) .. (80.2956pt,135.6271pt)
+                .. controls (79.8416pt,134.3354pt) and (81.0134pt,134.0294pt) .. (80.8478pt,127.4488pt)
+                .. controls (80.4063pt,117.6267pt) and (79.2945pt,107.1493pt) .. (80.552pt,97.9359pt)
+                .. controls (87.9382pt,94.531pt) and (101.6769pt,104.3559pt) .. (102.3372pt,113.7383pt)
+                .. controls (101.9595pt,116.6143pt) and (103.3333pt,120.147pt) .. (108.3576pt,119.2026pt)
+                .. controls (104.096pt,126.038pt) and (100.082pt,128.4544pt) .. (92.6021pt,132.109pt) -- cycle;
+            \path[fill=\pgfkeysvalueof{/tikz/radlab logo upper arms}]
+            (80.1288pt,136.2806pt) .. controls (82.0377pt,137.5778pt) and (84.961pt,137.8558pt) .. (87.4727pt,137.6314pt)
+                .. controls (89.2452pt,143.7907pt) and (85.8369pt,154.8173pt) .. (85.3281pt,154.6639pt)
+                .. controls (83.8676pt,155.11pt) and (81.0676pt,156.4734pt) .. (80.1666pt,158.8014pt)
+                .. controls (76.9053pt,151.3896pt) and (78.7609pt,142.687pt) .. (80.1289pt,136.2806pt) -- cycle;
+            \path[fill=\pgfkeysvalueof{/tikz/radlab logo upper arms}]
+            (102.7375pt,114.411pt) .. controls (103.1514pt,110.147pt) and (113.3385pt,95.7004pt) .. (115.6761pt,94.8453pt)
+                .. controls (117.4924pt,95.6205pt) and (119.7265pt,95.5273pt) .. (121.3327pt,95.2647pt)
+                .. controls (119.6563pt,101.5926pt) and (116.8664pt,108.896pt) .. (112.7161pt,114.2925pt)
+                .. controls (110.4618pt,117.2236pt) and (109.2599pt,119.7561pt) .. (105.1403pt,118.6047pt)
+                .. controls (103.4179pt,117.7897pt) and (102.8163pt,116.7403pt) .. (102.7375pt,114.411pt) -- cycle;
+            \path[fill=\pgfkeysvalueof{/tikz/radlab logo forearms}]
+            (91.3077pt,169.0873pt) .. controls (83.0356pt,165.493pt) and (80.2114pt,160.1907pt) .. (80.5048pt,159.2312pt)
+                .. controls (80.8925pt,158.1231pt) and (83.0427pt,155.8086pt) .. (85.5633pt,155.1453pt)
+                .. controls (88.6907pt,155.2595pt) and (93.2379pt,165.6906pt) .. (93.0926pt,167.1695pt)
+                .. controls (92.1498pt,167.8182pt) and (91.6832pt,168.4794pt) .. (91.3077pt,169.0873pt) -- cycle;
+            \path[fill=\pgfkeysvalueof{/tikz/radlab logo forearms}]
+            (127.4848pt,74.1188pt) .. controls (127.5833pt,75.0489pt) and (125.6781pt,90.2006pt) .. (121.4957pt,94.6397pt)
+                .. controls (119.5557pt,95.2358pt) and (116.1337pt,94.8917pt) .. (115.753pt,94.1271pt)
+                .. controls (113.9932pt,90.2013pt) and (119.9465pt,80.9754pt) .. (124.9788pt,73.6795pt)
+                .. controls (125.402pt,73.959pt) and (126.5864pt,74.1871pt) .. (127.4848pt,74.1188pt) -- cycle;
+            \path[fill=\pgfkeysvalueof{/tikz/radlab logo hands}]
+            (93.2499pt,167.4808pt) .. controls (94.8357pt,167.5786pt) and (95.4821pt,167.7992pt) .. (96.8769pt,168.4588pt)
+                .. controls (98.7662pt,169.3524pt) and (99.9413pt,167.0961pt) .. (100.9627pt,167.9057pt)
+                .. controls (102.2821pt,168.9516pt) and (101.4814pt,171.43pt) .. (100.4894pt,172.2121pt)
+                .. controls (96.2498pt,175.5548pt) and (94.1063pt,173.154pt) .. (91.5939pt,169.332pt)
+                .. controls (91.6933pt,168.7656pt) and (93.1426pt,167.5743pt) .. (93.2499pt,167.4808pt) -- cycle;
+            \path[fill=\pgfkeysvalueof{/tikz/radlab logo hands}]
+            (125.1514pt,73.354pt) .. controls (123.6967pt,72.3961pt) and (124.0475pt,70.0684pt) .. (123.55pt,69.1903pt)
+                .. controls (122.4514pt,67.7035pt) and (121.3218pt,67.9429pt) .. (120.9914pt,67.1628pt)
+                .. controls (120.8118pt,66.7385pt) and (121.6914pt,64.6276pt) .. (123.2527pt,64.6044pt)
+                .. controls (131.3047pt,64.5162pt) and (128.5405pt,72.2637pt) .. (127.5544pt,73.647pt)
+                .. controls (126.9364pt,73.9613pt) and (125.6611pt,73.743pt) .. (125.1514pt,73.354pt) -- cycle;
+            \path[fill=\pgfkeysvalueof{/tikz/radlab logo face}]
+            (95.8279pt,135.6271pt) .. controls (100.5333pt,128.1229pt) and (109.2944pt,131.3479pt) .. (110.2119pt,137.4519pt)
+                .. controls (110.2689pt,138.4242pt) and (105.3993pt,141.9797pt) .. (103.9833pt,141.4479pt)
+                .. controls (103.2101pt,141.2791pt) and (96.4598pt,136.8504pt) .. (95.8279pt,135.6271pt) -- cycle;
+            \path[fill=\pgfkeysvalueof{/tikz/radlab logo eye}]
+            (104.8259pt,138.647pt) .. controls (104.2577pt,138.5563pt) and (104.1689pt,138.5482pt) .. (103.722pt,138.5097pt)
+                .. controls (102.9732pt,138.4452pt) and (102.0193pt,139.2254pt) .. (101.3508pt,139.9331pt)
+                .. controls (101.6238pt,140.1166pt) and (101.8062pt,140.225pt) .. (101.8062pt,140.225pt)
+                .. controls (102.4559pt,139.6455pt) and (103.0376pt,139.0217pt) .. (103.7875pt,139.0603pt)
+                .. controls (104.4051pt,139.092pt) and (105.0724pt,139.6584pt) .. (105.192pt,139.6584pt)
+                .. controls (105.4615pt,139.6584pt) and (107.1823pt,138.5876pt) .. (107.3127pt,137.9976pt)
+                .. controls (106.932pt,136.9604pt) and (105.6791pt,138.166pt) .. (104.8259pt,138.647pt) -- cycle;
+            \path[fill=\pgfkeysvalueof{/tikz/radlab logo helmet}]
+            (100.8303pt,143.0329pt) .. controls (101.0207pt,142.6256pt) and (101.4582pt,141.8777pt) .. (102.316pt,141.379pt)
+                .. controls (103.2015pt,141.818pt) and (103.8145pt,142.358pt) .. (104.3317pt,142.2621pt)
+                .. controls (106.348pt,141.8885pt) and (110.1411pt,139.6809pt) .. (110.9669pt,137.6661pt)
+                .. controls (110.3138pt,131.9408pt) and (101.5739pt,126.5718pt) .. (95.0641pt,135.4442pt)
+                .. controls (90.6372pt,134.5422pt) and (99.1452pt,128.0919pt) .. (104.5124pt,128.2785pt)
+                .. controls (105.8672pt,128.3256pt) and (107.16pt,129.2898pt) .. (108.417pt,129.4242pt)
+                .. controls (110.7051pt,129.669pt) and (111.1543pt,128.7658pt) .. (113.3669pt,131.4787pt)
+                .. controls (115.039pt,133.5289pt) and (116.8844pt,137.8501pt) .. (115.477pt,140.3681pt)
+                .. controls (114.9893pt,141.2407pt) and (108.1206pt,145.3546pt) .. (107.3934pt,145.5316pt)
+                .. controls (104.7614pt,145.722pt) and (101.395pt,143.6816pt) .. (100.8303pt,143.0329pt) -- cycle;
+            \path[fill=\pgfkeysvalueof{/tikz/radlab logo joints}]
+                (84.1854pt,96.9935pt) circle[radius=1.357pt]
+                (104.1389pt,118.2867pt) circle[radius=0.9737pt]
+                (83.5653pt,137.1992pt) circle[radius=0.9737pt]
+                (82.5137pt,156.556pt) circle[radius=0.8885pt]
+                (118.3562pt,95.1615pt) circle[radius=0.8885pt]
+                (126.1616pt,73.9058pt) circle[radius=0.5874pt]
+                (92.1842pt,168.1937pt) circle[radius=0.5874pt];
+            \draw[draw=\pgfkeysvalueof{/tikz/radlab logo outline}, line width=0.16297cm, line join=miter]
+                (3.3345,6.57307)
+                .. controls (2.15113,6.57384) and (1.26876,5.88044) .. (0.82034,5.03154)
+                .. controls (0.37191,4.18264) and (0.42449,3.14374) .. (0.94938,2.20831)
+                -- (0.54771,2.20192)
+                .. controls (0.26547,2.19743) and (0.08032,2.01556) .. (0.08032,1.73453)
+                -- (0.08032,0.58341)
+                .. controls (0.08032,0.30238) and (0.26544,0.07613) .. (0.54771,0.07613)
+                -- (6.12129,0.07613)
+                .. controls (6.40356,0.07613) and (6.58868,0.30238) .. (6.58868,0.58341)
+                -- (6.58868,1.73453)
+                .. controls (6.58868,2.01556) and (6.40353,2.19743) .. (6.12129,2.20192)
+                -- (5.71962,2.20831)
+                .. controls (6.24451,3.14374) and (6.29709,4.18264) .. (5.84866,5.03154)
+                .. controls (5.40024,5.88044) and (4.51787,6.57384) .. (3.3345,6.57307);
+        \end{scope}
+    }}
+}

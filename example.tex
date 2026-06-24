@@ -1,0 +1,339 @@
+\documentclass[%
+    % aspectratio=169
+    % aspectratio=1610
+]{beamer}
+
+% Font packages for XeLaTeX or LuaLaTeX (pdflatex will not work with these)
+\usepackage{fontspec}
+\usepackage{unicode-math}
+
+%-----------------------------------------
+% Set Theme Options
+%-----------------------------------------
+\usetheme[%
+    logo=magicc, % byu|magicc|radlab
+    footline=default, % default|minimal|none
+    nav=top, % top|bottom|none
+    framenumber=current, % current|total
+]{byu}
+
+%------------------------------------------
+% (Optional) Scale height of frametitle bar
+% > default is 100
+%------------------------------------------
+\renewcommand{\byuFrametitleBarScalePercent}{125}
+
+%-----------------------------------------
+% Main, sans, and mono font options
+% (sans is used most often with beamer)
+%-----------------------------------------
+\setmainfont{Source Serif Pro}
+\setsansfont{Source Sans Pro}
+
+% \setmainfont{Source Serif Pro}
+% \setsansfont{Source Serif Pro}
+
+% \setmainfont{Gillius ADF No2}
+\setmonofont{SauceCodePro Nerd Font Mono}
+
+%-----------------------------------------
+% Math font options
+%-----------------------------------------
+\setmathfont{Latin Modern Math}
+% \setmathfont{TeX Gyre Termes Math}
+% \setmathfont{Fira Math}
+% \setmathfont{STIX Two Math}
+% \setmathfont{Libertinus Math}
+
+
+%--------------------------------------------
+% Override bullet points
+%--------------------------------------------
+
+%------ Fun bullet points (may require a nerd font)
+% \newfontfamily\emojifont{SauceCodePro Nerd Font}
+% \setbeamertemplate{itemize item}{\emojifont \scriptsize }
+% \setbeamertemplate{itemize subitem}{\emojifont \scriptsize 🤖}
+% \setbeamertemplate{itemize subsubitem}{\emojifont \scriptsize }
+
+%------ Standard bullet points
+% \setbeamertemplate{itemize subsubitem}[triangle]
+% \setbeamertemplate{itemize subsubitem}[square]
+% \setbeamertemplate{itemize subsubitem}[star]
+% \setbeamertemplate{itemize subsubitem}[ball]
+% \setbeamertemplate{itemize item}{$\circ$}
+% \setbeamertemplate{itemize subitem}{$\diamond$}
+
+
+%--------------------------------------------
+% Front matter
+%--------------------------------------------
+\title[Short Title]{Super Awesome Long Title}
+\institute[BYU]{Brigham Young University}
+\author[Short Author]{Long Author John Doe}
+\date[Jun 2026]{June 24, 2026}
+
+
+%--------------------------------------------
+% Main content
+%--------------------------------------------
+\begin{document}
+
+%--------------------------------------------------
+\begin{frame}[plain,noframenumbering]
+\titlepage
+\end{frame}
+
+%--------------------------------------------------
+\begin{frame}[plain,noframenumbering]
+\centering
+\resizebox{\textheight}{!}{%
+\begin{tikzpicture}
+    \pic[byu color=byuNavy] {byu_logo};
+\end{tikzpicture}%
+}
+\end{frame}
+
+%--------------------------------------------------
+\begin{frame}[plain,noframenumbering]
+\centering
+\resizebox{\textheight}{!}{%
+\begin{tikzpicture}
+    \pic[
+        magicc chevron color=byuRoyal,
+        magicc arc color=magiccGray,
+        magicc text color=magiccDarkGray,
+        byu color=byuNavy,
+    ] {magicc_logo};
+\end{tikzpicture}%
+}
+\end{frame}
+
+%--------------------------------------------------
+\begin{frame}[plain,noframenumbering]
+\centering
+\resizebox{0.72\textheight}{!}{%
+\begin{tikzpicture}
+    \pic[
+        outline=radlabBlue,
+        background=none,
+        text box=radlabBlue,
+        text=white,
+        text claws=white,
+        base=radlabBlue,
+        torso=radlabBlue,
+        upper arms=black,
+        forearms=radlabBlue,
+        hands=black,
+        face=radlabBlue,
+        eye=white,
+        helmet=black,
+        joints=white,
+    ] {radlab_logo};
+\end{tikzpicture}%
+}
+\end{frame}
+
+
+%--------------------------------------------------
+\section{Introduction}
+%--------------------------------------------------
+
+
+%--------------------------------------------------
+\begin{frame}{Overview}
+
+Here is a test slide:
+
+\begin{itemize}
+\item Background
+\item Methods
+\item Results
+\item Takeaways
+\end{itemize}
+
+\end{frame}
+
+%--------------------------------------------------
+\begin{frame}{List Tests}
+
+\begin{columns}
+    \begin{column}{0.5\textwidth}
+        \begin{itemize}
+            \item Level 1
+            \begin{itemize}
+                \item Level 2
+                    \begin{itemize}
+                        \item Level 3
+                        \item This is the max level depth
+                    \end{itemize}
+            \end{itemize}
+        \end{itemize}
+    \end{column}
+
+    \begin{column}{0.5\textwidth}
+        \begin{enumerate}
+            \item Level 1
+            \begin{enumerate}
+                \item Level 2
+                    \begin{enumerate}
+                        \item Level 3
+                        \item This is the max level depth
+                    \end{enumerate}
+            \end{enumerate}
+        \end{enumerate}
+    \end{column}
+\end{columns}
+
+\end{frame}
+
+%--------------------------------------------------
+\begin{frame}{Blocks}
+
+
+\begin{block}{Block}
+    \begin{quote}
+        It's not the plane, it's the pilot. --Rooster
+    \end{quote}
+\end{block}
+
+\begin{alertblock}{Alert Block}
+    \begin{quote}
+        Trust your instincts. Don't think. Just do. --Maverick
+    \end{quote}
+\end{alertblock}
+
+\begin{example}
+    \begin{quote}
+        You can be my wingman anytime. --Iceman
+    \end{quote}
+\end{example}
+
+\end{frame}
+
+%--------------------------------------------------
+\begin{frame}{Bulleted Lists}
+
+\begin{itemize}
+    \item Level 1
+    \begin{itemize}
+        \item Level 2
+            \begin{itemize}
+                \item Level 3
+                \item This is the max level depth
+            \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+%--------------------------------------------------
+\begin{frame}{Numbered Lists}
+
+\begin{enumerate}
+    \item Level 1
+    \begin{enumerate}
+        \item Level 2
+            \begin{enumerate}
+                \item Level 3
+                \item This is the max level depth
+            \end{enumerate}
+    \end{enumerate}
+\end{enumerate}
+
+\end{frame}
+
+
+%--------------------------------------------------
+\section{Background}
+%--------------------------------------------------
+
+
+%--------------------------------------------------
+\begin{frame}{Related Work}
+    \centering
+    {\LARGE Sources}
+\end{frame}
+
+
+%--------------------------------------------------
+\section{Methods}
+%--------------------------------------------------
+
+
+%--------------------------------------------------
+\begin{frame}{Math}
+    \begin{equation}
+        \int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+    \end{equation}
+
+    \begin{equation}
+        \min_{\mathbf{u}} \quad \sum_{k=0}^{T} \| \tilde{\mathbf{x}}_k \|_Q^2 + \| \tilde{\mathbf{u}}_k \|_R^2
+    \end{equation}
+
+    \begin{equation}
+        \mathbf{u}_{\mathrm{min}} \leq \mathbf{u}_k \leq \mathbf{u}_{\mathrm{max}}
+    \end{equation}
+\end{frame}
+
+
+%--------------------------------------------------
+\begin{frame}[fragile]{Code}
+\begin{scriptsize} % mono font is quite large, so we shrink it down a bit
+\begin{verbatim}
+def fibonacci(n: int) -> list[int]:
+    values = [0, 1]
+    while len(values) < n:
+        values.append(values[-1] + values[-2])
+    return values
+
+print(fibonacci(10))  # -> [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+\end{verbatim}
+\end{scriptsize}
+\end{frame}
+
+%--------------------------------------------------
+\begin{frame}{Methods}
+    \centering
+    {\LARGE Do this and you're cool}
+\end{frame}
+
+%--------------------------------------------------
+\begin{frame}{More Content}
+    \centering
+    {\LARGE More cool stuff}
+\end{frame}
+
+
+%--------------------------------------------------
+\section{Results}
+%--------------------------------------------------
+
+
+%--------------------------------------------------
+\begin{frame}{Results}
+    \centering
+    {\LARGE Awesome stuff}
+\end{frame}
+
+%--------------------------------------------------
+\begin{frame}{More Content}
+    \centering
+    {\LARGE More cool stuff}
+\end{frame}
+
+
+%--------------------------------------------------
+\section{Takeaways}
+%--------------------------------------------------
+
+
+%--------------------------------------------------
+
+\begin{frame}{Conclusion}
+    \centering
+    {\LARGE This is why I should graduate}
+\end{frame}
+
+
+\end{document}

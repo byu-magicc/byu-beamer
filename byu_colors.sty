@@ -1,0 +1,38 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{byu_colors}[2026/04/15 Centralized color definitions for BYU]
+
+\RequirePackage{xcolor}
+
+
+% --- BYU Navy variants ---
+\definecolor{byuNavyFromSVG}{HTML}{002D5D}
+\definecolor{byuNavyBrandHex}{HTML}{002E5D}
+\definecolor{byuNavyBrandRGB}{RGB}{0,46,93}
+\definecolor{byuNavyLogoLegacy}{RGB}{30,48,88}
+\definecolor{byuNavyThemeLegacy}{HTML}{002255}
+
+% --- BYU Royal variants ---
+\definecolor{byuRoyalBrandHex}{HTML}{0047BA}
+\definecolor{byuRoyalBrandRGB}{RGB}{0,61,165}
+\definecolor{byuRoyalThesis}{HTML}{005CAB}
+
+
+% ==========================================================
+
+
+%% Primary
+\colorlet{byuNavy}{byuNavyFromSVG}
+
+%% Secondary
+\colorlet{byuDarkRoyal}{byuRoyalBrandRGB}
+\colorlet{byuRoyal}{byuRoyalBrandHex}
+
+%% Accent
+\definecolor{byuRed}{HTML}{990011}      % #990011
+\definecolor{byuGreen}{HTML}{007722}    % #007722
+\definecolor{byuOrange}{HTML}{EEAA00}   % #EEAA00
+
+%% Logo-specific
+\definecolor{magiccDarkGray}{HTML}{646e78}    % #646e78   rgb(100,110,120)
+\definecolor{magiccGray}{HTML}{A7A9AC}     % #A7A9AC
+\definecolor{radlabBlue}{RGB}{11,70,115}

@@ -1,0 +1,178 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{magicc_logo}[2026/04/08 MAGICC logo mark pics (magicc_chevron, magicc_arc, magicc_unit, magicc_logo)]
+
+\RequirePackage{tikz}
+\RequirePackage{byu_colors}
+\RequirePackage{byu_logo}
+\RequirePackage{gillius2}
+
+\providecommand{\addfontfeatures}[1]{}
+
+%% ================================================================
+%% Color keys
+%% ================================================================
+\tikzset{
+    magicc chevron color/.store in = \mChevColor,  magicc chevron color = magiccDarkGray,
+    magicc arc color/.store in    = \mArcColor,    magicc arc color    = magiccGray,
+    magicc text color/.store in   = \mTextColor,   magicc text color   = magiccDarkGray,
+}
+
+
+%% ================================================================
+%% Sub-components - Define "arc" and "chevron"
+%% ================================================================
+
+\NewDocumentCommand{\drawTlMagiccArc}{}{%
+    %% Raw arc Bézier path — \input into pic definitions
+    %% Requires \mArcColor to be defined by the calling scope
+    \draw[fill=\mArcColor, draw=none]
+    (1.0000, 0.1400)
+    .. controls (1.0000, 0.1400) and (0.9000, -0.0300) .. (0.5800, -0.1160)
+    .. controls (0.2700, -0.2000) and (-0.1400, -0.2400) .. (-0.5600, -0.1160)
+    .. controls (-0.9860, 0.0100) and (-1.0000, 0.2300) .. (-1.0000, 0.2300)
+    .. controls (-1.0000, 0.2300) and (-0.9970, 0.2400) .. (-0.9860, 0.2310)
+    .. controls (-0.9860, 0.2310) and (-0.9500, 0.0260) .. (-0.5400, -0.0850)
+    .. controls (-0.1240, -0.2000) and (0.3420, -0.1360) .. (0.5600, -0.0560)
+    .. controls (0.8100, 0.0360) and (0.8900, 0.1670) .. (0.8900, 0.1670)
+    -- (0.9700, 0.1950)
+    -- (1.0000, 0.1400);
+}
+
+\NewDocumentCommand{\drawTlMagiccChevron}{}{%
+    %% Raw chevron Bézier path — \input into pic definitions
+    %% Requires \mChevColor to be defined by the calling scope
+    \draw[fill=\mChevColor, draw=none]
+    (0.9600, -0.4550)
+    .. controls (0.9830, -0.4560) and (1.0050, -0.4330) .. (0.9950, -0.4100)
+    -- (0.7040, 0.4300)
+    .. controls (0.6990, 0.4490) and (0.6780, 0.4590) .. (0.6600, 0.4520)
+    -- (-0.9770, -0.2550)
+    .. controls (-1.0110, -0.2680) and (-0.9950, -0.3250) .. (-0.9590, -0.3180)
+    -- (0.4220, -0.0900)
+    -- (0.9460, -0.4500)
+    .. controls (0.9510, -0.4530) and (0.9580, -0.4550) .. (0.9600, -0.4550);
+}
+
+
+%% ================================================================
+%% Sub-component pics (internal building blocks)
+%% ================================================================
+
+\tikzset{ pics/magicc_chevron/.style = { code = {
+    % \input{tl_logo_magicc_chevron}
+    \drawTlMagiccChevron
+}}}
+
+\tikzset{ pics/magicc_arc/.style = { code = {
+    \drawTlMagiccArc
+}}}
+
+%% magicc_unit: one half of the logo mark (mirrored arc + inline chevron)
+\tikzset{ pics/magicc_unit/.style = { code = {
+    \begin{scope}[xscale=-1]
+        \drawTlMagiccArc
+    \end{scope}
+    \begin{scope}[shift={(-0.894, 0.255)}, xscale=-1, scale=0.22]
+        \drawTlMagiccChevron
+    \end{scope}
+}}}
+
+\NewDocumentCommand{\drawTlMagiccUnit}{}{%
+    \begin{scope}[xscale=-1]
+        \drawTlMagiccArc
+    \end{scope}
+    \begin{scope}[shift={(-0.894, 0.255)}, xscale=-1, scale=0.22]
+        \drawTlMagiccChevron
+    \end{scope}
+}
+
+%% ================================================================
+%% magicc_logo: full composed logo
+%%   Upper + lower arc/chevron units, "MAGICC LAB" text, BYU logo
+%%   All at fixed relative positions, scalable as one unit.
+%%
+%% Keys (set before \pic):
+%%   magicc chevron color, magicc arc color -- mark colors
+%%   magicc text color -- "MAGICC LAB" text color
+%%   byu color -- BYU logo color (from logo_byu.sty)
+%% ================================================================
+
+% One thing to verify after the change: the transform composition ordering.
+% With \begin{scope}[xscale=-1, yscale=-1, shift={(0.02,-0.3546)}],
+% TikZ applies the shift in the already-scaled coordinate system,
+% so the effective displacement in parent coords is (-0.02, 0.3546).
+
+% This matches what the current upper unit does
+% (shift (0.0205, 0.3548) with yscale=-1).
+% But the numbers have minor tuning differences
+% (0.0200 vs 0.0205, 0.3546 vs 0.3548),
+% so build and compare visually to confirm.
+
+\tikzset{ pics/magicc_logo/.style = { code = {
+    %% Lower arc+chevron unit
+    % \begin{scope}[shift={(0.02,-0.3546)}, xscale=-1]
+    %     \drawTlMagiccArc
+    % \end{scope}
+    % \begin{scope}[shift={(-0.874,-0.0996)}, xscale=-1, scale=0.22]
+    %     \drawTlMagiccChevron
+    % \end{scope}
+    \begin{scope}[shift={(0.0200,-0.3546)}]
+        \drawTlMagiccUnit
+    \end{scope}
+
+    %% Upper arc+chevron unit (mirrored)
+    % \begin{scope}[shift={(0.0205,0.3548)}, yscale=-1]
+    %     \drawTlMagiccArc
+    % \end{scope}
+    % \begin{scope}[shift={(0.9145,0.0998)}, yscale=-1, scale=0.22]
+    %     \drawTlMagiccChevron
+    % \end{scope}
+    \begin{scope}[xscale=-1, yscale=-1, shift={(0.0200,-0.3546)}]
+        \drawTlMagiccUnit
+    \end{scope}
+
+    %% "MAGICC LAB" text -- 6.5pt tuned to unit-scale geometry
+    \node[font=\gilliustwo\bfseries\fontsize{6.5pt}{10pt}\selectfont\addfontfeatures{RawFeature=+cpsp},
+          text=\mTextColor, transform shape]
+        at (0.1,-0.18) {MAGICC LAB};
+    % \node[
+    %   anchor=base west,
+    %   inner sep=0pt,
+    %   font=\gilliustwo\bfseries\fontsize{6.5pt}{10pt}\selectfont\addfontfeatures{RawFeature=+cpsp},
+    %   text=\mTextColor,
+    %   transform shape
+    % ] at (-0.612,-0.26) {MAGICC LAB};
+    % % ] at (-0.712,-0.26) {MAGICC LAB};
+
+    %% BYU logo
+    \begin{scope}[scale=0.59, shift={(0.0,0.235)}]
+        \drawTlByuLetters
+    \end{scope}
+}}}
+
+%% ================================================================
+%% Cached rendering (render once, stamp many times)
+%% ================================================================
+\newsavebox{\magiccLogoBox}
+
+%% \cacheMAGICCLogo[tikz keys]
+%%   Renders magicc_logo once into a savebox.  Use \usebox{\magiccLogoBox}
+%%   everywhere the logo is needed (headers, footers, title pages, etc.).
+%%
+%% Example (consumer document, after \begin{document}):
+%%   \cacheMAGICCLogo[
+%%       magicc chevron color=magiccDarkGray,
+%%       magicc arc color=magiccGray,
+%%       magicc text color=magiccDarkGray,
+%%       byu color=byuNavy,
+%%       scale=0.5
+%%   ]
+%%   ...
+%%   \usebox{\magiccLogoBox}
+\newcommand{\cacheMAGICCLogo}[1][]{%
+    \sbox{\magiccLogoBox}{%
+        \begin{tikzpicture}
+            \pic [#1] {magicc_logo};
+        \end{tikzpicture}%
+    }%
+}

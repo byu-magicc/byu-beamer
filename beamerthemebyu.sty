@@ -1,0 +1,333 @@
+\ProvidesPackage{beamerthemebyu}
+
+\RequirePackage{byu_logo}
+\RequirePackage{magicc_logo}
+\RequirePackage{radlab_logo}
+
+\def\byu@framelogo{byu}
+\def\byu@footline{default}
+\def\byu@nav{top}
+\def\byu@framenumber{current}
+
+\DeclareOptionBeamer{logo}{%
+  \def\byu@framelogo{#1}%
+}
+
+\DeclareOptionBeamer{footline}{%
+  \def\byu@footline{#1}%
+}
+
+\DeclareOptionBeamer{nav}{%
+  \def\byu@nav{#1}%
+}
+
+\DeclareOptionBeamer{framenumber}{%
+  \def\byu@framenumber{#1}%
+}
+
+\ProcessOptionsBeamer
+
+\mode<presentation>
+
+\usefonttheme{professionalfonts} % uses better math font than default
+
+\usetheme[shadow=false]{Frankfurt}
+
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{itemize subitem}{%
+  \usebeamerfont*{itemize subitem}%
+  \raise1.25pt\hbox{\donotcoloroutermaths$\circ$}%
+}
+\setbeamertemplate{itemize subsubitem}{--}
+
+\AddToHook{begindocument/end}{%
+  \renewcommand{\theenumi}{\arabic{enumi}}%
+  \renewcommand{\theenumii}{\alph{enumii}}%
+  \renewcommand{\theenumiii}{\roman{enumiii}}%
+}
+\setbeamertemplate{enumerate item}{\insertenumlabel.}
+\setbeamertemplate{enumerate subitem}{\insertsubenumlabel.}
+\setbeamertemplate{enumerate subsubitem}{\insertsubsubenumlabel.}
+
+\setbeamercolor{structure}{fg=byuNavy}
+\setbeamercolor*{frametitle}{bg=byuNavy!50,fg=white!25}
+\setbeamercolor*{section in head/foot}{bg=byuNavy,fg=gray!25}
+\setbeamercolor{author in head/foot}{bg=byuNavy,fg=white!25}
+\setbeamercolor{title in head/foot}{bg=byuNavy!50,fg=white}
+\setbeamercolor{date in head/foot}{bg=byuNavy,fg=white!25}
+\setbeamercolor{byu minimal footline}{bg=white,fg=byuNavy}
+\setbeamercolor{byu footline separator}{bg=white,fg=white}
+\setbeamercolor{frame in head/foot}{bg=byuNavy,fg=white!25}
+
+\setbeamercovered{invisible}
+
+\mode<all>
+
+\newsavebox{\byuFrametitleScaledLogoBox}
+\newsavebox{\byuFrametitleLogoBox}
+\newsavebox{\byuFrametitleTextBox}
+\newlength{\byuFrametitlePad}
+\newlength{\byuFrametitleLogoRightPad}
+\newlength{\byuFrametitleLogoGap}
+\newlength{\byuFrametitleLogoHeight}
+\newlength{\byuFrametitleNaturalHeight}
+\newlength{\byuFrametitleBarHeight}
+
+\setlength{\byuFrametitlePad}{.3cm}
+\setlength{\byuFrametitleLogoRightPad}{\byuFrametitlePad}
+\setlength{\byuFrametitleLogoGap}{.35cm}
+\newcommand{\byuFrametitleBarScalePercent}{100}
+\newcommand{\byuFrametitleLogoScalePercent}{100}
+
+\newcommand{\byuCacheFrametitleLogo}{%
+  \@ifundefined{byuCacheFrametitleLogo@\byu@framelogo}{%
+    \PackageError{beamerthemebyu}{Unknown logo `\byu@framelogo'}%
+      {Valid logos are `byu', `magicc', and `radlab'.}%
+  }{%
+    \csname byuCacheFrametitleLogo@\byu@framelogo\endcsname%
+  }%
+}
+
+\newcommand{\byuCacheFrametitleLogo@byu}{%
+  \renewcommand{\byuFrametitleLogoScalePercent}{60}%
+  \sbox{\byuFrametitleLogoBox}{%
+    \begin{tikzpicture}
+      \pic[byu color=byuNavy] {byu_logo};
+    \end{tikzpicture}%
+  }%
+}
+
+\newcommand{\byuCacheFrametitleLogo@magicc}{%
+  \renewcommand{\byuFrametitleLogoScalePercent}{100}%
+  \sbox{\byuFrametitleLogoBox}{%
+    \begin{tikzpicture}
+      \pic[%
+        scale=0.6,
+        transform shape,
+        magicc chevron color=magiccDarkGray,
+        % magicc arc color=magiccGray,
+        % magicc text color=magiccDarkGray,
+        byu color=byuNavy,
+        % magicc chevron color=white,
+        magicc arc color=white,
+        magicc text color=byuNavy,
+        % byu color=white,
+      ] {magicc_logo};
+    \end{tikzpicture}%
+  }%
+}
+
+\newcommand{\byuCacheFrametitleLogo@radlab}{%
+  \renewcommand{\byuFrametitleLogoScalePercent}{100}%
+  \sbox{\byuFrametitleLogoBox}{%
+    \begin{tikzpicture}
+      \pic[helmet=black,hands=black] {radlab_logo};
+    \end{tikzpicture}%
+  }%
+}
+
+\AtBeginDocument{%
+  \byuCacheFrametitleLogo%
+}
+
+\newcommand{\byuFrametitleLogo}{%
+  \resizebox{!}{\dimexpr\byuFrametitleLogoScalePercent\byuFrametitleLogoHeight/100\relax}{%
+    \usebox{\byuFrametitleLogoBox}%
+  }%
+}
+
+\newcommand{\byuIfFootline}[3]{%
+  \def\byu@tmp{#1}%
+  \ifx\byu@footline\byu@tmp #2\else #3\fi%
+}
+
+\newcommand{\byuIfNav}[3]{%
+  \def\byu@tmp{#1}%
+  \ifx\byu@nav\byu@tmp #2\else #3\fi%
+}
+
+\newcommand{\byuIfFrameNumber}[3]{%
+  \def\byu@tmp{#1}%
+  \ifx\byu@framenumber\byu@tmp #2\else #3\fi%
+}
+
+\newcommand{\byuFrameNumber}{%
+  \byuIfFrameNumber{current}{\insertframenumber}{%
+    \byuIfFrameNumber{total}{\insertframenumber{} / \inserttotalframenumber}{%
+      \PackageError{beamerthemebyu}{Unknown framenumber `\byu@framenumber'}%
+        {Valid framenumber values are `current' and `total'.}%
+    }%
+  }%
+}
+
+\newcommand{\byuSectionNavigationDark}{%
+  \leavevmode%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=3.75ex]{section in head/foot}
+    \insertnavigation{\paperwidth}
+  \end{beamercolorbox}%
+}
+
+\defbeamertemplate*{headline}{byu crisp}{%
+  \byuIfNav{top}{\byuSectionNavigationDark}{}%
+}
+
+\defbeamertemplate*{frametitle}{byu crisp}{%
+  \nointerlineskip%
+  \usebeamerfont*{frametitle}%
+  \sbox{\byuFrametitleTextBox}{%
+    \begin{minipage}{\dimexpr\paperwidth-\byuFrametitlePad-\byuFrametitleLogoRightPad-\byuFrametitleLogoGap\relax}%
+      \vskip0.5ex%
+      \usebeamerfont*{frametitle}\strut\insertframetitle%
+      \ifx\insertframesubtitle\@empty%
+        \strut\par%
+      \else%
+        \par{\usebeamerfont*{framesubtitle}{\usebeamercolor[fg]{framesubtitle}\strut\insertframesubtitle}\strut\par}%
+      \fi%
+      \vskip0.05ex%
+    \end{minipage}%
+  }%
+  \setlength{\byuFrametitleLogoHeight}{\dimexpr\ht\byuFrametitleTextBox+\dp\byuFrametitleTextBox\relax}%
+  \sbox{\byuFrametitleScaledLogoBox}{\byuFrametitleLogo}%
+  \sbox{\byuFrametitleTextBox}{%
+    \begin{minipage}{%
+      \dimexpr\paperwidth-\byuFrametitlePad-\byuFrametitleLogoRightPad-\byuFrametitleLogoGap-\wd\byuFrametitleScaledLogoBox\relax%
+    }%
+      \vskip0.5ex%
+      \usebeamerfont*{frametitle}\strut\insertframetitle%
+      \ifx\insertframesubtitle\@empty%
+        \strut\par%
+      \else%
+        \par{\usebeamerfont*{framesubtitle}{\usebeamercolor[fg]{framesubtitle}\strut\insertframesubtitle}\strut\par}%
+      \fi%
+      \vskip0.05ex%
+    \end{minipage}%
+  }%
+  \setlength{\byuFrametitleNaturalHeight}{\dimexpr\ht\byuFrametitleTextBox+\dp\byuFrametitleTextBox\relax}%
+  \setlength{\byuFrametitleBarHeight}{\dimexpr\byuFrametitleBarScalePercent\byuFrametitleNaturalHeight/100\relax}%
+  \sbox{\byuFrametitleTextBox}{%
+    \vbox to \byuFrametitleBarHeight{%
+      \vfil%
+      \box\byuFrametitleTextBox%
+      \vfil%
+    }%
+  }%
+  \setlength{\byuFrametitleLogoHeight}{\byuFrametitleBarHeight}%
+  \sbox{\byuFrametitleScaledLogoBox}{\byuFrametitleLogo}%
+  \sbox{\byuFrametitleTextBox}{%
+    \begin{minipage}{%
+      \dimexpr\paperwidth-\byuFrametitlePad-\byuFrametitleLogoRightPad-\byuFrametitleLogoGap-\wd\byuFrametitleScaledLogoBox\relax%
+    }%
+      \vbox to \byuFrametitleBarHeight{%
+        \vfil%
+        \vskip0.5ex%
+        \usebeamerfont*{frametitle}\strut\insertframetitle%
+        \ifx\insertframesubtitle\@empty%
+          \strut\par%
+        \else%
+          \par{\usebeamerfont*{framesubtitle}{\usebeamercolor[fg]{framesubtitle}\strut\insertframesubtitle}\strut\par}%
+        \fi%
+        \vskip0.05ex%
+        \vfil%
+      }%
+    \end{minipage}%
+  }%
+  \begin{beamercolorbox}[wd=\paperwidth,sep=0pt]{frametitle}
+    \hbox to \paperwidth{%
+      \hskip\byuFrametitlePad%
+      \usebox{\byuFrametitleTextBox}%
+      \hskip\byuFrametitleLogoGap%
+      \raisebox{\dimexpr.5\ht\byuFrametitleTextBox-.5\dp\byuFrametitleTextBox-.5\height\relax}[0pt][0pt]{\usebox{\byuFrametitleScaledLogoBox}}%
+      \hskip\byuFrametitleLogoRightPad%
+      \hfil%
+    }%
+  \end{beamercolorbox}%
+}
+
+\makeatletter
+\pgfdeclareverticalshading[lower.bg,upper.bg]{bmb@transition}{200cm}{%
+  color(0pt)=(lower.bg);%
+  color(2pt)=(lower.bg);%
+  color(2pt)=(upper.bg);%
+  color(4pt)=(upper.bg)%
+}
+\makeatother
+
+% \setbeamercolor{block title example}{bg=BYUgreen,fg=white}
+% \setbeamercolor{block body example}{bg=BYUgreen!10,fg=black}
+\setbeamercolor{block title example}{use=example text,fg=white,bg=example text.fg!75!black}
+\setbeamercolor{block body example}{parent=normal text,use=block title example,bg=block title example.bg!10!bg}
+
+\newcommand{\byuDefaultFootline}{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,left]{author in head/foot}%
+      \hspace*{3mm}%
+      \usebeamerfont{author in head/foot}\insertshortauthor%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.50\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+      \usebeamerfont{title in head/foot}\insertshorttitle%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.2\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+      \usebeamerfont{date in head/foot}\insertshortdate%
+      \hspace*{3mm}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.05\paperwidth,ht=2.25ex,dp=1ex,center]{frame in head/foot}%
+      \usebeamerfont{frame in head/foot}\byuFrameNumber
+    \end{beamercolorbox}%
+  }%
+}
+
+\newcommand{\byuMinimalFootline}{%
+  \leavevmode%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex,right]{byu minimal footline}%
+    \usebeamerfont{frame in head/foot}\byuFrameNumber%
+    \hspace*{2mm}%
+  \end{beamercolorbox}%
+}
+
+\newcommand{\byuSelectedFootline}{%
+  \byuIfFootline{default}{\byuDefaultFootline}{%
+    \byuIfFootline{minimal}{\byuMinimalFootline}{%
+      \byuIfFootline{none}{}{%
+        \PackageError{beamerthemebyu}{Unknown footline `\byu@footline'}%
+          {Valid footline values are `default', `minimal', and `none'.}%
+      }%
+    }%
+  }%
+}
+
+\newcommand{\byuBottomNavigation}{%
+  \byuIfNav{bottom}{%
+    \byuSectionNavigationDark%
+  }{%
+    \byuIfNav{top}{}{%
+      \byuIfNav{none}{}{%
+        \PackageError{beamerthemebyu}{Unknown nav `\byu@nav'}%
+          {Valid nav values are `top', `bottom', and `none'.}%
+      }%
+    }%
+  }%
+}
+
+% I considered adding a thicker white border between the nav section and footline
+% when nav=bottom, but I decided to remove it by setting the height (ht) to 0.
+% I left this code here as an option later on to thicken the border.
+\newcommand{\byuBottomNavigationSeparator}{%
+  \byuIfNav{bottom}{%
+    \leavevmode%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=0.0pt,dp=0pt]{byu footline separator}%
+    \end{beamercolorbox}%
+    \par\nointerlineskip%
+  }{}%
+}
+
+% define the footline
+\defbeamertemplate*{footline}{infolines theme}{%
+  \byuSelectedFootline%
+  \par\nointerlineskip%
+  \byuBottomNavigationSeparator%
+  \byuBottomNavigation%
+  \vskip0pt%
+}
+
+\setbeamertemplate{navigation symbols}{} % no nav symbols
