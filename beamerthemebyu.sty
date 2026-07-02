@@ -66,6 +66,96 @@
 \setbeamertemplate{enumerate subitem}{\insertsubenumlabel.}
 \setbeamertemplate{enumerate subsubitem}{\insertsubsubenumlabel.}
 
+%%%% Set icons for Table of Contents (TOC)
+\setbeamertemplate{section in toc}[sections numbered]
+\setbeamertemplate{subsection in toc}{%
+  \leavevmode\leftskip=2em%
+  \inserttocsectionnumber.\inserttocsubsectionnumber~%
+  \inserttocsubsection\par%
+}
+\setbeamertemplate{subsubsection in toc}{%
+  \leavevmode\leftskip=4em%
+  \inserttocsectionnumber.\inserttocsubsectionnumber.\inserttocsubsubsectionnumber~%
+  \inserttocsubsubsection\par%
+}
+
+%%%% Create note page style
+\newcommand{\insertfullsectionpath}{%
+  \insertsection%
+  \ifx\insertsubsection\@empty\else
+    \space$\to$\space\insertsubsection%
+  \fi
+  \ifx\insertsubsubsection\@empty\else
+    \space$\to$\space\insertsubsubsection%
+  \fi
+}
+
+\newlength{\notenpagemargin}
+\setlength{\notenpagemargin}{1ex}
+
+\defbeamertemplate{note page}{byu clean}{
+  %% Set background color
+  \pagecolor{gray!10}
+
+  \noindent
+  \makebox[0pt][l]{%
+  \hspace*{\dimexpr-\beamer@leftmargin+\notenpagemargin\relax}%
+  \begin{minipage}[t][\dimexpr\paperheight-2ex\relax][t]{%
+    \dimexpr\paperwidth-2\notenpagemargin\relax%
+  }
+
+  \vspace{1ex}
+
+  %% Top section: Section Info & Title on left, Preview on right
+  \begin{minipage}[t]{0.58\linewidth}
+    \vspace{0pt}
+    {\scriptsize \color{gray} \insertfullsectionpath \par}
+    \vspace{0.1cm}
+    {\Large \bfseries \insertframetitle \par}
+    \rule{\linewidth}{0.5pt}\par % Line only spans this text column
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[t]{0.38\linewidth} % Slide preview
+    \vspace{0pt} % Crucial: Aligns the top of the image with the top of the text
+    \begin{flushright}
+      \insertslideintonotes{0.35} % scale of slide preview size
+    \end{flushright}
+  \end{minipage}
+
+  \vspace{0.5cm}
+  %% The actual notes
+  {\large \insertnote}
+
+  %% Slide number
+  \vfill % Push to bottom
+  \begin{flushright} % Push to right
+    {\normalsize \bfseries \color{gray} Slide \insertframenumber{} / \inserttotalframenumber}
+  \end{flushright}
+
+  \end{minipage}
+  }%
+}
+
+\defbeamertemplate{note page}{byu minimal}{
+  %% Set background color
+  \pagecolor{gray!10}
+
+  %% The actual notes
+  {\large \insertnote}
+
+  %% Slide number
+  \vfill % Push to bottom
+  \begin{flushright} % Push to right
+    {\normalsize \bfseries \color{gray} Slide \insertframenumber{} / \inserttotalframenumber}
+  \end{flushright}
+}
+
+\defbeamertemplate{note page}{byu blank}{
+  \pagecolor{gray!10}
+  {\large \insertnote}
+}
+
+%%%% Set colors for the various elements
 \setbeamercolor{structure}{fg=byuNavy}
 \setbeamercolor*{frametitle}{bg=byuNavy!50,fg=white!25}
 \setbeamercolor*{section in head/foot}{bg=byuNavy,fg=gray!25}
@@ -75,6 +165,7 @@
 \setbeamercolor{byu minimal footline}{bg=white,fg=byuNavy}
 \setbeamercolor{byu footline separator}{bg=white,fg=white}
 \setbeamercolor{frame in head/foot}{bg=byuNavy,fg=white!25}
+\setbeamercolor{note page}{bg=gray!50,fg=black}
 
 % block environments
 \setbeamercolor{block title}{use=block text,fg=white,bg=byuNavy}

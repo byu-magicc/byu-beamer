@@ -3,10 +3,6 @@
   aspectratio=1610,
 ]{beamer}
 
-% Font packages for XeLaTeX or LuaLaTeX (pdflatex will not work with these)
-\usepackage{fontspec}
-\usepackage{unicode-math}
-
 %-----------------------------------------
 % Set Theme Options
 %-----------------------------------------
@@ -17,37 +13,36 @@
   framenumber=current, % current|total
 ]{byu}
 
-%------------------------------------------
-% (Optional) Scale height of frametitle bar
-% > default is 100
-%------------------------------------------
+% (Optional) Scale height of frametitle bar: default is 100
 \renewcommand{\byuFrametitleBarScalePercent}{125}
 
+%%%% Set notes style (built-ins are default|compress|plain)
+\setbeamertemplate{note page}[byu clean] % byu clean|byu minimal|byu blank
+\setbeameroption{show notes on second screen=right}
+
 %-----------------------------------------
-% Main, sans, and mono font options
-% (sans is used most often with beamer)
+% Import packages
+%-----------------------------------------
+% Font packages for XeLaTeX or LuaLaTeX (pdflatex will not work with these)
+\usepackage{fontspec}
+\usepackage[mathbf=sym]{unicode-math} % replaces deprecated \mathbf with new \symbf
+
+%-----------------------------------------
+% Choose fonts/typefaces
 %-----------------------------------------
 \setmainfont{Source Serif Pro}
-\setsansfont{Source Sans Pro}
-
-% \setmainfont{Source Serif Pro}
-% \setsansfont{Source Serif Pro}
-
-% \setmainfont{Gillius ADF No2}
+\setsansfont{Source Sans Pro} % beamer mainly uses sans
 \setmonofont{SauceCodePro Nerd Font Mono}
 
-%-----------------------------------------
-% Math font options
-%-----------------------------------------
-\setmathfont{Latin Modern Math}
-% \setmathfont{TeX Gyre Termes Math}
-% \setmathfont{Fira Math}
-% \setmathfont{STIX Two Math}
-% \setmathfont{Libertinus Math}
-
+%%%% Math font options
+% \setmathfont{Tex Gyre Pagella Math}
+% \setmathfont{Latin Modern Math}
+% \setmathfont{NewCMSansMath-Regular.otf}
+\setmathfont{Noto Sans Math} % doesn't define U+2022 (bullet) so you need the next line too
+\setmathfont{Noto Sans}[range="2022, Scale=MatchUppercase]
 
 %--------------------------------------------
-% Override bullet points
+% Override bullet points (optional)
 %--------------------------------------------
 
 %------ Fun bullet points (may require a nerd font)
@@ -64,6 +59,42 @@
 % \setbeamertemplate{itemize item}{$\circ$}
 % \setbeamertemplate{itemize subitem}{$\diamond$}
 
+%------------------------------------------------
+% This adds Table of Contents before each section
+%------------------------------------------------
+\setcounter{tocdepth}{3}
+\AtBeginSection[]{% If you want to show the outline before each section
+  \begin{frame}{Outline}
+    \tableofcontents[
+      currentsection,
+      sectionstyle=show/shaded,              % Gray out non-active sections
+      subsectionstyle=show/show/hide,        % Hide all subsections
+      subsubsectionstyle=hide/hide/hide/hide % Hide all subsubsections
+    ]
+  \end{frame}
+}
+\AtBeginSubsection[]{% If you want to show the outline before each subsection
+  \begin{frame}{Outline}
+    \tableofcontents[
+      currentsection,
+      currentsubsection,
+      % sectionstyle=shaded/shaded,            % Gray out all sections
+      sectionstyle=show/shaded,              % Gray out non-active sections
+      subsectionstyle=show/shaded/hide,      % Highlight active subsection, hide others
+      subsubsectionstyle=show/show/hide/hide % Reveal subsubsections ONLY for active branch
+    ]
+  \end{frame}
+}
+
+%--------------------------------------------
+% Custom commands
+%--------------------------------------------
+\newcommand{\speak}[2]{% for use inside of note environments
+  \textbf{\textcolor{byuRoyal}{#1:}} #2 \par \vspace{0.5em}
+}
+\newcommand{\takeaway}[1]{
+
+}
 
 %--------------------------------------------
 % Front matter
@@ -136,6 +167,14 @@
 
 
 %--------------------------------------------------
+% Table of Contents
+%--------------------------------------------------
+\begin{frame}{Outline}
+  \tableofcontents[subsectionstyle=hide,subsubsectionstyle=hide]
+\end{frame}
+
+
+%--------------------------------------------------
 \section{Introduction}
 %--------------------------------------------------
 
@@ -152,8 +191,12 @@ Here is a test slide:
 \item Takeaways
 \end{itemize}
 
+\note[item]{This is my note}
+
 \end{frame}
 
+\subsection{List Tests}
+\subsubsection{Combined}
 %--------------------------------------------------
 \begin{frame}{List Tests}
 
