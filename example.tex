@@ -1,6 +1,6 @@
 \documentclass[%
-    % aspectratio=169
-    % aspectratio=1610
+  % aspectratio=169,
+  aspectratio=1610,
 ]{beamer}
 
 % Font packages for XeLaTeX or LuaLaTeX (pdflatex will not work with these)
@@ -11,10 +11,10 @@
 % Set Theme Options
 %-----------------------------------------
 \usetheme[%
-    logo=magicc, % byu|magicc|radlab
-    footline=default, % default|minimal|none
-    nav=top, % top|bottom|none
-    framenumber=current, % current|total
+  logo=magicc, % byu|magicc|radlab
+  footline=default, % default|minimal|none
+  nav=top, % top|bottom|none
+  framenumber=current, % current|total
 ]{byu}
 
 %------------------------------------------
@@ -89,7 +89,7 @@
 \centering
 \resizebox{\textheight}{!}{%
 \begin{tikzpicture}
-    \pic[byu color=byuNavy] {byu_logo};
+  \pic[byu color=byuNavy] {byu_logo};
 \end{tikzpicture}%
 }
 \end{frame}
@@ -99,12 +99,12 @@
 \centering
 \resizebox{\textheight}{!}{%
 \begin{tikzpicture}
-    \pic[
-        magicc chevron color=byuRoyal,
-        magicc arc color=magiccGray,
-        magicc text color=magiccDarkGray,
-        byu color=byuNavy,
-    ] {magicc_logo};
+  \pic[
+    magicc chevron color=byuRoyal,
+    magicc arc color=magiccGray,
+    magicc text color=magiccDarkGray,
+    byu color=byuNavy,
+  ] {magicc_logo};
 \end{tikzpicture}%
 }
 \end{frame}
@@ -114,22 +114,22 @@
 \centering
 \resizebox{0.72\textheight}{!}{%
 \begin{tikzpicture}
-    \pic[
-        outline=radlabBlue,
-        background=none,
-        text box=radlabBlue,
-        text=white,
-        text claws=white,
-        base=radlabBlue,
-        torso=radlabBlue,
-        upper arms=black,
-        forearms=radlabBlue,
-        hands=black,
-        face=radlabBlue,
-        eye=white,
-        helmet=black,
-        joints=white,
-    ] {radlab_logo};
+  \pic[
+    outline=radlabBlue,
+    background=none,
+    text box=radlabBlue,
+    text=white,
+    text claws=white,
+    base=radlabBlue,
+    torso=radlabBlue,
+    upper arms=black,
+    forearms=radlabBlue,
+    hands=black,
+    face=radlabBlue,
+    eye=white,
+    helmet=black,
+    joints=white,
+  ] {radlab_logo};
 \end{tikzpicture}%
 }
 \end{frame}
@@ -158,88 +158,91 @@ Here is a test slide:
 \begin{frame}{List Tests}
 
 \begin{columns}
-    \begin{column}{0.5\textwidth}
+  \begin{column}{0.5\textwidth}
+    \begin{itemize}
+      \item Level 1
+      \begin{itemize}
+        \item Level 2
         \begin{itemize}
-            \item Level 1
-            \begin{itemize}
-                \item Level 2
-                    \begin{itemize}
-                        \item Level 3
-                        \item This is the max level depth
-                    \end{itemize}
-            \end{itemize}
+          \item Level 3
+          \item This is the max level depth
         \end{itemize}
-    \end{column}
+      \end{itemize}
+    \end{itemize}
+  \end{column}
 
-    \begin{column}{0.5\textwidth}
+  \begin{column}{0.5\textwidth}
+    \begin{enumerate}
+      \item Level 1
+      \begin{enumerate}
+        \item Level 2
         \begin{enumerate}
-            \item Level 1
-            \begin{enumerate}
-                \item Level 2
-                    \begin{enumerate}
-                        \item Level 3
-                        \item This is the max level depth
-                    \end{enumerate}
-            \end{enumerate}
+          \item Level 3
+          \item This is the max level depth
         \end{enumerate}
-    \end{column}
+      \end{enumerate}
+    \end{enumerate}
+  \end{column}
 \end{columns}
 
 \end{frame}
 
+\subsubsection{Bullet}
+%--------------------------------------------------
+\begin{frame}{Bulleted Lists}
+
+\begin{itemize}
+  \item Level 1
+  \begin{itemize}
+    \item Level 2
+    \begin{itemize}
+      \item Level 3
+      \item This is the max level depth
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\subsubsection{Numbered}
+%--------------------------------------------------
+\begin{frame}{Numbered Lists}
+
+\begin{enumerate}
+  \item Level 1
+  \begin{enumerate}
+    \item Level 2
+    \begin{enumerate}
+      \item Level 3
+      \item This is the max level depth
+    \end{enumerate}
+  \end{enumerate}
+\end{enumerate}
+
+\end{frame}
+
+\subsection{Block Tests}
 %--------------------------------------------------
 \begin{frame}{Blocks}
 
 
 \begin{block}{Block}
-    \begin{quote}
-        It's not the plane, it's the pilot. --Rooster
-    \end{quote}
+  \begin{quote}
+    It's not the plane, it's the pilot. --Rooster
+  \end{quote}
 \end{block}
 
 \begin{alertblock}{Alert Block}
-    \begin{quote}
-        Trust your instincts. Don't think. Just do. --Maverick
-    \end{quote}
+  \begin{quote}
+    Trust your instincts. Don't think. Just do. --Maverick
+  \end{quote}
 \end{alertblock}
 
 \begin{example}
-    \begin{quote}
-        You can be my wingman anytime. --Iceman
-    \end{quote}
+  \begin{quote}
+    You can be my wingman anytime. --Iceman
+  \end{quote}
 \end{example}
-
-\end{frame}
-
-%--------------------------------------------------
-\begin{frame}{Bulleted Lists}
-
-\begin{itemize}
-    \item Level 1
-    \begin{itemize}
-        \item Level 2
-            \begin{itemize}
-                \item Level 3
-                \item This is the max level depth
-            \end{itemize}
-    \end{itemize}
-\end{itemize}
-
-\end{frame}
-
-%--------------------------------------------------
-\begin{frame}{Numbered Lists}
-
-\begin{enumerate}
-    \item Level 1
-    \begin{enumerate}
-        \item Level 2
-            \begin{enumerate}
-                \item Level 3
-                \item This is the max level depth
-            \end{enumerate}
-    \end{enumerate}
-\end{enumerate}
 
 \end{frame}
 
@@ -251,8 +254,8 @@ Here is a test slide:
 
 %--------------------------------------------------
 \begin{frame}{Related Work}
-    \centering
-    {\LARGE Sources}
+  \centering
+  {\LARGE Sources}
 \end{frame}
 
 
@@ -263,17 +266,28 @@ Here is a test slide:
 
 %--------------------------------------------------
 \begin{frame}{Math}
-    \begin{equation}
-        \int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
-    \end{equation}
+  \begin{equation}
+    \int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+  \end{equation}
 
-    \begin{equation}
-        \min_{\mathbf{u}} \quad \sum_{k=0}^{T} \| \tilde{\mathbf{x}}_k \|_Q^2 + \| \tilde{\mathbf{u}}_k \|_R^2
-    \end{equation}
+  \begin{equation}
+    \min_{\mathbf{u}} \quad \sum_{k=0}^{T} \| \tilde{\mathbf{x}}_k \|_Q^2 + \| \tilde{\mathbf{u}}_k \|_R^2
+  \end{equation}
 
-    \begin{equation}
-        \mathbf{u}_{\mathrm{min}} \leq \mathbf{u}_k \leq \mathbf{u}_{\mathrm{max}}
-    \end{equation}
+  % \begin{equation}
+  %   \mathbf{u}_{\mathrm{min}} \leq \mathbf{u}_k \leq \mathbf{u}_{\mathrm{max}}
+  % \end{equation}
+  \begin{align}
+    \mathbf{u}_{\mathrm{min}} \leq \mathbf{u}_k \leq \mathbf{u}_{\mathrm{max}} \\
+    \mathbf{u}_{\textrm{min}} \leq \mathbf{u}_k \leq \mathbf{u}_{\textrm{max}} \\
+    \mathbf{u}_{\textnormal{min}} \leq \mathbf{u}_k \leq \mathbf{u}_{\textnormal{max}}
+  \end{align}
+
+  \note{
+    \speak{Hook}{This is the square root of pi!}
+    \speak{Key Point}{Regularizing cost function}
+    \speak{Transition}{Moving on to a code example}
+  }
 \end{frame}
 
 
@@ -294,14 +308,14 @@ print(fibonacci(10))  # -> [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
 
 %--------------------------------------------------
 \begin{frame}{Methods}
-    \centering
-    {\LARGE Do this and you're cool}
+  \centering
+  {\LARGE Do this and you're cool}
 \end{frame}
 
 %--------------------------------------------------
 \begin{frame}{More Content}
-    \centering
-    {\LARGE More cool stuff}
+  \centering
+  {\LARGE More cool stuff}
 \end{frame}
 
 
@@ -312,14 +326,14 @@ print(fibonacci(10))  # -> [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
 
 %--------------------------------------------------
 \begin{frame}{Results}
-    \centering
-    {\LARGE Awesome stuff}
+  \centering
+  {\LARGE Awesome stuff}
 \end{frame}
 
 %--------------------------------------------------
 \begin{frame}{More Content}
-    \centering
-    {\LARGE More cool stuff}
+  \centering
+  {\LARGE More cool stuff}
 \end{frame}
 
 
@@ -331,8 +345,8 @@ print(fibonacci(10))  # -> [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
 %--------------------------------------------------
 
 \begin{frame}{Conclusion}
-    \centering
-    {\LARGE This is why I should graduate}
+  \centering
+  {\LARGE This is why I should graduate}
 \end{frame}
 
 
