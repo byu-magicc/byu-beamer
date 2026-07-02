@@ -4,6 +4,17 @@
 \RequirePackage{magicc_logo}
 \RequirePackage{radlab_logo}
 
+%--------------------------------------------------
+% Define custom options
+% e.g. (how to use in your main .tex file)
+% \usetheme[%
+%     logo=magicc, % byu|magicc|radlab
+%     footline=default, % default|minimal|none
+%     nav=top, % top|bottom|none
+%     framenumber=current, % current|total
+% ]{byu}
+%--------------------------------------------------
+
 \def\byu@framelogo{byu}
 \def\byu@footline{default}
 \def\byu@nav{top}
@@ -29,10 +40,15 @@
 
 \mode<presentation>
 
+%--------------------------------------------------
+% Define theme
+%--------------------------------------------------
+
 \usefonttheme{professionalfonts} % uses better math font than default
 
 \usetheme[shadow=false]{Frankfurt}
 
+%%%% Set icons for bulleted lists
 \setbeamertemplate{itemize item}[circle]
 \setbeamertemplate{itemize subitem}{%
   \usebeamerfont*{itemize subitem}%
@@ -40,6 +56,7 @@
 }
 \setbeamertemplate{itemize subsubitem}{--}
 
+%%%% Set icons for numbered lists
 \AddToHook{begindocument/end}{%
   \renewcommand{\theenumi}{\arabic{enumi}}%
   \renewcommand{\theenumii}{\alph{enumii}}%
@@ -59,9 +76,17 @@
 \setbeamercolor{byu footline separator}{bg=white,fg=white}
 \setbeamercolor{frame in head/foot}{bg=byuNavy,fg=white!25}
 
+% block environments
+\setbeamercolor{block title}{use=block text,fg=white,bg=byuNavy}
+\setbeamercolor{block body}{use=block text,fg=black,bg=byuNavy!10}
+
 \setbeamercovered{invisible}
 
 \mode<all>
+
+%--------------------------------------------------
+% Logos for Frametitle
+%--------------------------------------------------
 
 \newsavebox{\byuFrametitleScaledLogoBox}
 \newsavebox{\byuFrametitleLogoBox}
@@ -88,6 +113,7 @@
   }%
 }
 
+%%%% BYU logo
 \newcommand{\byuCacheFrametitleLogo@byu}{%
   \renewcommand{\byuFrametitleLogoScalePercent}{60}%
   \sbox{\byuFrametitleLogoBox}{%
@@ -97,6 +123,7 @@
   }%
 }
 
+%%%% MAGICC logo
 \newcommand{\byuCacheFrametitleLogo@magicc}{%
   \renewcommand{\byuFrametitleLogoScalePercent}{100}%
   \sbox{\byuFrametitleLogoBox}{%
@@ -117,6 +144,7 @@
   }%
 }
 
+%%%% RADLAB logo
 \newcommand{\byuCacheFrametitleLogo@radlab}{%
   \renewcommand{\byuFrametitleLogoScalePercent}{100}%
   \sbox{\byuFrametitleLogoBox}{%
@@ -135,6 +163,10 @@
     \usebox{\byuFrametitleLogoBox}%
   }%
 }
+
+%--------------------------------------------------
+% Footline, Nav, and Frametitle Elements
+%--------------------------------------------------
 
 \newcommand{\byuIfFootline}[3]{%
   \def\byu@tmp{#1}%
@@ -251,11 +283,6 @@
   color(4pt)=(upper.bg)%
 }
 \makeatother
-
-% \setbeamercolor{block title example}{bg=BYUgreen,fg=white}
-% \setbeamercolor{block body example}{bg=BYUgreen!10,fg=black}
-\setbeamercolor{block title example}{use=example text,fg=white,bg=example text.fg!75!black}
-\setbeamercolor{block body example}{parent=normal text,use=block title example,bg=block title example.bg!10!bg}
 
 \newcommand{\byuDefaultFootline}{%
   \leavevmode%
