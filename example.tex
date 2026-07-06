@@ -16,9 +16,20 @@
 % (Optional) Scale height of frametitle bar: default is 100
 \renewcommand{\byuFrametitleBarScalePercent}{125}
 
-%%%% Set notes style (built-ins are default|compress|plain)
-\setbeamertemplate{note page}[byu clean] % byu clean|byu minimal|byu blank
+%%%% Set notes style
 \setbeameroption{show notes on second screen=right}
+\setbeamertemplate{note page}[byu] % built-ins are default|compress|plain
+%% (fine tuned control of byu notes theme)
+% \byuNotesPreviewOff
+% \byuNotesContextOff
+% \byuNotesTitleOff
+% \byuNotesRuleOff
+% \byuNotesSlideNumberOff
+% \byuNotesBodyBesidePreviewOn % controls whether notes are left or below of preview
+% \setlength{\byuNotesPageMargin}{1ex}
+% \setlength{\byuNotesColumnGap}{1ex}
+% \setlength{\byuNotesPreviewPadding}{1ex}
+% \renewcommand{\byuNotesPreviewScale}{0.3}
 
 %-----------------------------------------
 % Import packages

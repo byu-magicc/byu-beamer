@@ -90,69 +90,181 @@
   \fi
 }
 
-\newlength{\notenpagemargin}
-\setlength{\notenpagemargin}{1ex}
+\newif\ifbyu@notespreview
+\newif\ifbyu@notescontext
+\newif\ifbyu@notestitle
+\newif\ifbyu@notesrule
+\newif\ifbyu@notesbody
+\newif\ifbyu@notesslidenumber
+\newif\ifbyu@notesheaderleft
+\newif\ifbyu@notesbodybesidepreview
+\newif\ifbyu@notesbodyrendered
 
-\defbeamertemplate{note page}{byu clean}{
+\byu@notespreviewtrue
+\byu@notescontexttrue
+\byu@notestitletrue
+\byu@notesruletrue
+\byu@notesbodytrue
+\byu@notesslidenumbertrue
+\byu@notesbodybesidepreviewfalse
+
+\newcommand{\byuNotesPreviewOn}{\byu@notespreviewtrue}
+\newcommand{\byuNotesPreviewOff}{\byu@notespreviewfalse}
+\newcommand{\byuNotesContextOn}{\byu@notescontexttrue}
+\newcommand{\byuNotesContextOff}{\byu@notescontextfalse}
+\newcommand{\byuNotesTitleOn}{\byu@notestitletrue}
+\newcommand{\byuNotesTitleOff}{\byu@notestitlefalse}
+\newcommand{\byuNotesRuleOn}{\byu@notesruletrue}
+\newcommand{\byuNotesRuleOff}{\byu@notesrulefalse}
+\newcommand{\byuNotesBodyOn}{\byu@notesbodytrue}
+\newcommand{\byuNotesBodyOff}{\byu@notesbodyfalse}
+\newcommand{\byuNotesSlideNumberOn}{\byu@notesslidenumbertrue}
+\newcommand{\byuNotesSlideNumberOff}{\byu@notesslidenumberfalse}
+\newcommand{\byuNotesBodyBesidePreviewOn}{\byu@notesbodybesidepreviewtrue}
+\newcommand{\byuNotesBodyBesidePreviewOff}{\byu@notesbodybesidepreviewfalse}
+
+\newlength{\byuNotesPageMargin}
+\setlength{\byuNotesPageMargin}{1ex}
+\newlength{\byuNotesColumnGap}
+\setlength{\byuNotesColumnGap}{1ex}
+\newlength{\byuNotesPreviewPadding}
+\setlength{\byuNotesPreviewPadding}{1ex}
+\newcommand{\byuNotesPreviewScale}{0.33}
+
+\newcommand{\byu@rendernotestoprow}{%
+  \ifbyu@notespreview
+    \byu@notesheaderleftfalse
+    \ifbyu@notescontext\byu@notesheaderlefttrue\fi
+    \ifbyu@notestitle\byu@notesheaderlefttrue\fi
+    \ifbyu@notesrule\byu@notesheaderlefttrue\fi
+    \ifbyu@notesheaderleft
+      \ifbyu@notesbodybesidepreview
+        \ifbyu@notesbody
+          \byu@notesbodyrenderedtrue
+        \fi
+      \fi
+      \noindent\makebox[\linewidth][l]{%
+        \begin{minipage}[t]{%
+          \dimexpr\linewidth-\byuNotesPreviewScale\linewidth-\byuNotesPreviewPadding-\byuNotesColumnGap\relax%
+        }
+          \vspace{0pt}
+          \ifbyu@notescontext
+            {\scriptsize \color{gray} \insertfullsectionpath \par}
+          \fi
+          \ifbyu@notestitle
+            \vspace{0.1cm}
+            {\Large \bfseries \insertframetitle \par}
+          \fi
+          \ifbyu@notesrule
+            \rule{\linewidth}{0.5pt}\par
+          \fi
+          \ifbyu@notesbodybesidepreview
+            \ifbyu@notesbody
+              \vspace{0.5cm}
+              {\large \insertnote}
+            \fi
+          \fi
+        \end{minipage}%
+        \hspace{\byuNotesColumnGap}%
+        \begin{minipage}[t]{\dimexpr\byuNotesPreviewScale\linewidth+\byuNotesPreviewPadding\relax}
+          \vspace{0pt}
+          \begin{flushright}
+            \insertslideintonotes{\byuNotesPreviewScale}
+          \end{flushright}
+        \end{minipage}%
+      }%
+    \else
+      \noindent\makebox[\linewidth][r]{%
+        \begin{minipage}[t]{\dimexpr\byuNotesPreviewScale\linewidth+\byuNotesPreviewPadding\relax}
+          \vspace{0pt}
+          \begin{flushright}
+            \insertslideintonotes{\byuNotesPreviewScale}
+          \end{flushright}
+        \end{minipage}%
+      }%
+    \fi
+    \vspace{0.5cm}
+  \else
+    \ifbyu@notescontext
+      {\scriptsize \color{gray} \insertfullsectionpath \par}
+    \fi
+    \ifbyu@notestitle
+      \vspace{0.1cm}
+      {\Large \bfseries \insertframetitle \par}
+    \fi
+    \ifbyu@notesrule
+      \rule{\linewidth}{0.5pt}\par
+    \fi
+    \ifbyu@notescontext
+      \vspace{0.5cm}
+    \else
+      \ifbyu@notestitle
+        \vspace{0.5cm}
+      \else
+        \ifbyu@notesrule
+          \vspace{0.5cm}
+        \fi
+      \fi
+    \fi
+  \fi
+}
+
+\newcommand{\byu@rendernotespage}{%
   %% Set background color
   \pagecolor{gray!10}
 
   \noindent
   \makebox[0pt][l]{%
-  \hspace*{\dimexpr-\beamer@leftmargin+\notenpagemargin\relax}%
+  \hspace*{\dimexpr-\beamer@leftmargin+\byuNotesPageMargin\relax}%
   \begin{minipage}[t][\dimexpr\paperheight-2ex\relax][t]{%
-    \dimexpr\paperwidth-2\notenpagemargin\relax%
+    \dimexpr\paperwidth-2\byuNotesPageMargin\relax%
   }
 
   \vspace{1ex}
 
-  %% Top section: Section Info & Title on left, Preview on right
-  \begin{minipage}[t]{0.58\linewidth}
-    \vspace{0pt}
-    {\scriptsize \color{gray} \insertfullsectionpath \par}
-    \vspace{0.1cm}
-    {\Large \bfseries \insertframetitle \par}
-    \rule{\linewidth}{0.5pt}\par % Line only spans this text column
-  \end{minipage}%
-  \hfill
-  \begin{minipage}[t]{0.38\linewidth} % Slide preview
-    \vspace{0pt} % Crucial: Aligns the top of the image with the top of the text
+  \byu@notesbodyrenderedfalse
+  \byu@rendernotestoprow
+
+  \ifbyu@notesbody
+    \ifbyu@notesbodyrendered\else
+      {\large \insertnote}
+    \fi
+  \fi
+
+  \ifbyu@notesslidenumber
+    \vfill
     \begin{flushright}
-      \insertslideintonotes{0.35} % scale of slide preview size
+      {\normalsize \bfseries \color{gray} Slide \insertframenumber{} / \inserttotalframenumber}
     \end{flushright}
-  \end{minipage}
-
-  \vspace{0.5cm}
-  %% The actual notes
-  {\large \insertnote}
-
-  %% Slide number
-  \vfill % Push to bottom
-  \begin{flushright} % Push to right
-    {\normalsize \bfseries \color{gray} Slide \insertframenumber{} / \inserttotalframenumber}
-  \end{flushright}
+  \fi
 
   \end{minipage}
   }%
 }
 
+\defbeamertemplate{note page}{byu}{
+  \byu@rendernotespage
+}
+
 \defbeamertemplate{note page}{byu minimal}{
-  %% Set background color
-  \pagecolor{gray!10}
-
-  %% The actual notes
-  {\large \insertnote}
-
-  %% Slide number
-  \vfill % Push to bottom
-  \begin{flushright} % Push to right
-    {\normalsize \bfseries \color{gray} Slide \insertframenumber{} / \inserttotalframenumber}
-  \end{flushright}
+  \begingroup
+    \byu@notespreviewfalse
+    \byu@notescontextfalse
+    \byu@notestitlefalse
+    \byu@notesrulefalse
+    \byu@rendernotespage
+  \endgroup
 }
 
 \defbeamertemplate{note page}{byu blank}{
-  \pagecolor{gray!10}
-  {\large \insertnote}
+  \begingroup
+    \byu@notespreviewfalse
+    \byu@notescontextfalse
+    \byu@notestitlefalse
+    \byu@notesrulefalse
+    \byu@notesslidenumberfalse
+    \byu@rendernotespage
+  \endgroup
 }
 
 %%%% Set colors for the various elements
