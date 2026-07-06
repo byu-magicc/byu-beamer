@@ -103,10 +103,18 @@
 \newcommand{\speak}[2]{% for use inside of note environments
   \textbf{\textcolor{byuRoyal}{#1:}} #2 \par \vspace{0.5em}
 }
-\newcommand{\takeaway}[1]{
-
+\setbeamercolor{takeaway}{fg=black,bg=byuOrange!25!white}
+\newcommand{\takeaway}[1]{%
+  \vfill
+  \begin{beamercolorbox}[
+    wd=\linewidth,
+    sep=0ex,
+    rounded=true,
+  ]{takeaway}
+    \centering
+    \textbf{Takeaway:} #1
+  \end{beamercolorbox}
 }
-
 %--------------------------------------------
 % Front matter
 %--------------------------------------------
@@ -239,6 +247,8 @@ Here is a test slide:
   \end{column}
 \end{columns}
 
+\takeaway{Nice looking lists!}
+
 \end{frame}
 
 \subsubsection{Bullet}
@@ -336,6 +346,7 @@ Here is a test slide:
     \mathbf{u}_{\textrm{min}} \leq \mathbf{u}_k \leq \mathbf{u}_{\textrm{max}} \\
     \mathbf{u}_{\textnormal{min}} \leq \mathbf{u}_k \leq \mathbf{u}_{\textnormal{max}}
   \end{align}
+  \takeaway{Math is good for you.}
 
   \note{
     \speak{Hook}{This is the square root of pi!}
