@@ -38,6 +38,8 @@
 \usepackage{fontspec}
 \usepackage[mathbf=sym]{unicode-math} % replaces deprecated \mathbf with new \symbf
 
+\usepackage{tikzpagenodes} % for the takeaway box
+
 %-----------------------------------------
 % Choose fonts/typefaces
 %-----------------------------------------
@@ -103,18 +105,48 @@
 \newcommand{\speak}[2]{% for use inside of note environments
   \textbf{\textcolor{byuRoyal}{#1:}} #2 \par \vspace{0.5em}
 }
+
+%% Some options for frame highlight/takeaway/key point
 \setbeamercolor{takeaway}{fg=black,bg=byuOrange!25!white}
-\newcommand{\takeaway}[1]{%
+\newcommand{\takeawayf}[1]{% simple version (floating)
   \vfill
-  \begin{beamercolorbox}[
-    wd=\linewidth,
-    sep=0ex,
-    rounded=true,
-  ]{takeaway}
+  \begin{beamercolorbox}[wd=\linewidth,rounded=true]{takeaway}
     \centering
     \textbf{Takeaway:} #1
   \end{beamercolorbox}
 }
+\newcommand{\takeaway}[1]{% pinned just above footline
+  \AddToHookNext{shipout/foreground}{%
+    \begin{tikzpicture}[remember picture,overlay]
+      \node[
+        anchor=south,
+        yshift=0ex, % adjusts height from footline
+        fill=byuOrange!25!white,
+        % draw=byuOrange!80!black,
+        rounded corners=4pt,
+        inner xsep=1ex,
+        inner ysep=0.1ex,
+        text height=2.1ex,
+        text depth=1.0ex,
+        text width=\dimexpr\textwidth-1.6em\relax,
+        align=center
+      ] at (current page text area.south) {%
+        \textbf{Takeaway:} #1%
+      };
+    \end{tikzpicture}%
+  }%
+}
+\definecolor{bangboxColor}{RGB}{255, 229, 153}
+\newcommand{\bangbox}[1]{% pushes box to bottom and text to top
+  \vskip0pt plus 1filll
+  \noindent%
+  \colorbox{bangboxColor}{%
+    \parbox{\dimexpr\textwidth-2\fboxsep\relax}{%
+      \centering{#1}%
+    }%
+  }\par%
+}
+
 %--------------------------------------------
 % Front matter
 %--------------------------------------------
@@ -248,6 +280,7 @@ Here is a test slide:
 \end{columns}
 
 \takeaway{Nice looking lists!}
+% \bangbox{Nice looking lists!}
 
 \end{frame}
 
